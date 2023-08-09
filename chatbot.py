@@ -49,7 +49,7 @@ class Chatbot:
             img = self.user_avatar
         avatar = tk.Canvas(self.chat_frame, bg=self.bg, width=20, height=20)
         avatar.create_image(10, 10, anchor="center", image=img)
-        avatar.grid(row=self.row, column=num)
+        avatar.grid(row=self.row, column=num, pady=10, sticky="n")
         self.row += 1
 
     def get_response(self, prompt):
