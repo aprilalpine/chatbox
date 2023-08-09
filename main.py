@@ -4,6 +4,7 @@ import tkinter.ttk as ttk
 from tkinter.constants import *
 from chatbot import Chatbot
 
+
 class Main():
 
     def __init__(self):
@@ -14,7 +15,7 @@ class Main():
         self.width = self.window.winfo_screenwidth() / 4
         self.height = self.window.winfo_screenheight() / 2
         self.window.geometry("%dx%d" % (self.width, self.height))
-
+        self.window.resizable(False, False)
         light_blue = "#cfe2f3"
         darker_blue = "#9fc5e8"
         # title frame
@@ -27,10 +28,6 @@ class Main():
         frame_chat = VerticalScrolledFrame(self.window, darker_blue)
         frame_chat.pack(expand=True, fill="both")
 
-        # for i in range(10):
-        #     tk.Button(frame_chat.interior, text=f"Button {i}").pack(padx=10, pady=5)
-
-
         # input frame
         frame_input = tk.Frame(self.window, height=self.height/4, width=self.width*5/6, bg=light_blue)
         frame_input.pack(side="left")
@@ -41,7 +38,7 @@ class Main():
         frame_button.pack(side="left")
         frame_button.pack_propagate(False)
 
-        chatty = Chatbot(frame_chat.interior, frame_input, frame_button, self.width, self.height, darker_blue)
+        Chatbot(self.window, frame_chat.interior, frame_input, frame_button, self.width, self.height, darker_blue)
 
     def run(self):
         self.window.mainloop()
