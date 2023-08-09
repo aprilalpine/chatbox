@@ -28,8 +28,9 @@ class Chatbot:
         self.assistant_avatar = ImageTk.PhotoImage(Image.open("resources/cat.png").resize((20, 20)))
 
     def send_button(self):
+        orange = "#fce5cd"
         user_input = self.get_entry()
-        self.add_box(user_input, "e", 2)
+        self.add_box(user_input, "e", orange, 2)
         self.clear_entry()
         self.get_response(user_input)
 
@@ -39,8 +40,8 @@ class Chatbot:
     def clear_entry(self):
         self.user_input_box.delete('1.0', tk.END)
 
-    def add_box(self, text, side, num=0):
-        box = tk.Label(self.chat_frame, bg="white", text=text, font="Calibri")
+    def add_box(self, text, side, bg_color, num=0):
+        box = tk.Label(self.chat_frame, bg=bg_color, text=text, font="Calibri")
         box.config(wraplength=self.width*2/3)
         box.grid(row=self.row, column=1, sticky=side, padx=10, pady=10)
         # avatar
@@ -60,5 +61,5 @@ class Chatbot:
             ]
         )
         answer = response['choices'][0]['message']['content']
-        self.add_box(answer, "w")
+        self.add_box(answer, "w", "white")
 
