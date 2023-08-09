@@ -24,15 +24,14 @@ class Chatbot:
         self.chat_frame = chat_frame
         self.row = 0
 
-        self.user_avatar = ImageTk.PhotoImage(Image.open("resources/dog.png"))
-        self.assistant_avatar = ImageTk.PhotoImage(Image.open("resources/cat.png"))
+        self.user_avatar = ImageTk.PhotoImage(Image.open("resources/dog.png").resize((20, 20)))
+        self.assistant_avatar = ImageTk.PhotoImage(Image.open("resources/cat.png").resize((20, 20)))
 
     def send_button(self):
         user_input = self.get_entry()
         self.add_box(user_input, "e", 2)
         self.clear_entry()
         self.get_response(user_input)
-
 
     def get_entry(self):
         return self.user_input_box.get('1.0', tk.END).strip()
@@ -52,7 +51,6 @@ class Chatbot:
         avatar.create_image(10, 10, anchor="center", image=img)
         avatar.grid(row=self.row, column=num)
         self.row += 1
-
 
     def get_response(self, prompt):
         response = openai.ChatCompletion.create(
